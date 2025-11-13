@@ -4,6 +4,7 @@ import { firstValueFrom, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 
 import { EmojiSet } from '../models/emoji-set';
+import { environment } from '../../environments/environment';
 
 type EmojiFlowHttpResponse = EmojiSet | { result: EmojiSet };
 
@@ -12,7 +13,7 @@ const FALLBACK_EMOJIS = ['😀', '😎', '🚀', '🌈', '✨', '🔥', '🧠', 
 @Injectable({ providedIn: 'root' })
 export class EmojiFlowService {
   private readonly http = inject(HttpClient);
-  private readonly endpoint = '/api/emojiFlow';
+  private readonly endpoint = environment.flowEndpoint ?? '/api/emojiFlow';
 
   async generate(prompt: string): Promise<EmojiSet> {
     const sanitizedPrompt = prompt.trim();

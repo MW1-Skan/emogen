@@ -9,7 +9,8 @@
     "test": "ng test",
     "serve:ssr:emogen": "node dist/emogen/server/server.mjs",
     "genkit:dev": "tsx --tsconfig tsconfig.genkit.json genkit/server.ts",
-    "genkit:build": "tsc -p tsconfig.genkit.json"
+    "genkit:build": "tsc -p tsconfig.genkit.json",
+    "start:genkit": "tsx --tsconfig tsconfig.genkit.json genkit/server.ts"
   },
   "prettier": {
     "printWidth": 100,
