@@ -1,0 +1,34 @@
+<div class="app-shell relative overflow-hidden">
+  <app-floating-emoji-background />
+
+  <div class="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col gap-8 px-4 py-10 sm:px-6 lg:px-8">
+    <app-emoji-input
+      [isGenerating]="state.isGenerating()"
+      [initialPrompt]="state.prompt()"
+      (submitted)="handlePromptSubmit($event)"
+      (cleared)="handlePromptCleared()"
+    />
+
+    <app-results
+      [result]="state.result()"
+      [error]="state.error()"
+      [isLoading]="state.isGenerating()"
+      [canRegenerate]="state.canRegenerate()"
+      [favoriteIds]="favoriteIds()"
+      (regenerate)="handleRegenerate()"
+      (favoriteToggle)="handleFavoriteToggle($event)"
+      (copyEmoji)="handleCopyEmoji($event)"
+    />
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      <app-history [history]="state.history()" (selected)="handleHistorySelected($event)" />
+      <app-favorites
+        [favorites]="state.favorites()"
+        (selected)="handleFavoriteSelected($event)"
+        (removed)="handleFavoriteRemoved($event)"
+      />
+    </div>
+  </div>
+
+  <app-toast-container></app-toast-container>
+</div>
