@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Host: emo-gen.org
+Sitemap: https://emo-gen.org/sitemap.xml

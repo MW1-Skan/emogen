@@ -20,10 +20,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
       <div class="flex flex-col gap-2">
         <p class="text-sm uppercase tracking-[0.35em] text-white/60">Input</p>
         <h1 class="text-3xl md:text-5xl font-semibold text-white tracking-tight">
-          What's the vibe today?
+          AI emoji generator for every vibe
         </h1>
         <p class="text-white/70 text-base max-w-2xl">
-          Describe your feeling, moment, or idea and we’ll respond with three expressive emojis.
+          Describe your feeling, launch, or community moment and Emogen's AI emoji maker responds with
+          three expressive icons you can remix, favorite, and copy instantly.
         </p>
       </div>
 
@@ -41,7 +42,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
             aria-describedby="prompt-hint"
           ></textarea>
           <div class="flex items-center justify-between text-sm text-white/60">
-            <span id="prompt-hint">Max 180 characters · be specific</span>
+            <span id="prompt-hint">Max 180 characters &mdash; be specific</span>
             <span>{{ charactersRemaining() }} left</span>
           </div>
         </div>
