@@ -1,15 +1,16 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ToastModule } from 'primeng/toast';
 
 import { EmojiInputComponent } from './emoji-input/emoji-input.component';
 import { ResultsComponent } from './results/results.component';
 import { FloatingEmojiBackgroundComponent } from './floating-emoji-background/floating-emoji-background.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { HistoryComponent } from './history/history.component';
-import { ToastContainerComponent } from './toast/toast-container.component';
 import { ToastService } from './toast/toast.service';
 import { EmojiStateService } from './services/emoji-state.service';
 import { EmojiSet } from './models/emoji-set';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,7 @@ import { EmojiSet } from './models/emoji-set';
     FloatingEmojiBackgroundComponent,
     FavoritesComponent,
     HistoryComponent,
-    ToastContainerComponent
+    ToastModule
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -29,8 +30,18 @@ import { EmojiSet } from './models/emoji-set';
 export class App {
   protected readonly state = inject(EmojiStateService);
   private readonly toast = inject(ToastService);
+  private readonly donationUrl = environment.donationUrl ?? '';
 
   protected readonly favoriteIds = computed(() => this.state.favorites().map((set) => set.id));
+
+  constructor() {
+    effect(() => {
+      const error = this.state.error();
+      if (error) {
+        this.toast.error(error);
+      }
+    });
+  }
 
   protected handlePromptSubmit(prompt: string): void {
     void this.state.generate(prompt);
@@ -38,6 +49,15 @@ export class App {
 
   protected handlePromptCleared(): void {
     this.state.clearError();
+  }
+
+  protected handleDonate(): void {
+    if (!this.donationUrl) {
+      this.toast.info('Donation link coming soon ⏳');
+      return;
+    }
+
+    window.open(this.donationUrl, '_blank', 'noopener,noreferrer');
   }
 
   protected handleRegenerate(): void {
@@ -92,4 +112,9 @@ export class App {
       document.body.removeChild(textarea);
     }
   }
+
+  protected handleToastClick(): void {
+    this.toast.clear();
+  }
 }
+

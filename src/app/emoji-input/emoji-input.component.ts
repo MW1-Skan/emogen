@@ -66,6 +66,14 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
         >
           Clear
         </button>
+        <button
+          type="button"
+          class="ml-auto flex items-center gap-2 rounded-full bg-white/10 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-white/80 ring-1 ring-white/15 transition hover:bg-white/20 hover:text-white"
+          (click)="handleDonate()"
+        >
+          <span class="pi pi-heart text-pink-300"></span>
+          Donate
+        </button>
       </div>
     </form>
   `
@@ -75,6 +83,7 @@ export class EmojiInputComponent {
   readonly initialPrompt = input('');
   readonly submitted = output<string>();
   readonly cleared = output<void>();
+  readonly donate = output<void>();
 
   private readonly fb = inject(FormBuilder);
 
@@ -111,5 +120,9 @@ export class EmojiInputComponent {
 
   protected charactersRemaining(): number {
     return 180 - (this.form.controls.prompt.value?.length ?? 0);
+  }
+
+  protected handleDonate(): void {
+    this.donate.emit();
   }
 }

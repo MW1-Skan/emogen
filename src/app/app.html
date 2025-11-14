@@ -7,6 +7,7 @@
       [initialPrompt]="state.prompt()"
       (submitted)="handlePromptSubmit($event)"
       (cleared)="handlePromptCleared()"
+      (donate)="handleDonate()"
     />
 
     <app-results
@@ -30,5 +31,21 @@
     </div>
   </div>
 
-  <app-toast-container></app-toast-container>
+  <p-toast class="emogen-toast" position="top-right" [baseZIndex]="12000">
+    <ng-template let-message pTemplate="message">
+      <article
+        class="emogen-toast-card"
+        [class.emogen-toast-card-success]="message.severity === 'success'"
+        [class.emogen-toast-card-info]="message.severity === 'info'"
+        [class.emogen-toast-card-error]="message.severity === 'error'"
+        role="status"
+        aria-live="polite"
+        (click)="handleToastClick()"
+      >
+        <div class="emogen-toast-content">
+          <span class="emogen-toast-text">{{ message.detail }}</span>
+        </div>
+      </article>
+    </ng-template>
+  </p-toast>
 </div>

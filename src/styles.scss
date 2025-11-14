@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import 'primeicons/primeicons.css';
 
 @tailwind base;
 @tailwind components;
@@ -17,6 +18,7 @@
   --radius-xl: 32px;
   --radius-lg: 24px;
   --radius-md: 16px;
+  --p-toast-border-width: 0;
 }
 
 @layer base {
@@ -98,4 +100,79 @@
     white-space: nowrap;
     border-width: 0;
   }
+}
+
+@layer base {
+  .p-toast {
+    position: fixed;
+    width: min(420px, calc(100vw - 2rem));
+    pointer-events: none;
+  }
+
+  .p-toast-top-right {
+    top: 1.25rem;
+    right: 1.25rem;
+  }
+
+  .p-toast-message {
+    pointer-events: auto;
+    margin: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+.emogen-toast {
+  .p-toast-message {
+    padding: 0;
+  }
+}
+
+.emogen-toast-card {
+  width: min(420px, calc(100vw - 2rem));
+  padding: 1.5rem 1.6rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 122, 85, 0.95));
+  border: 1px solid rgba(167, 243, 208, 0.6);
+  box-shadow: 0 25px 55px rgba(5, 12, 25, 0.65);
+  color: #f0fdf4;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(18px);
+  margin-bottom: 0.85rem;
+}
+
+.emogen-toast-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 30px 65px rgba(5, 12, 25, 0.7);
+}
+
+.emogen-toast-card:active {
+  transform: scale(0.99);
+}
+
+.emogen-toast-content {
+  flex: 1;
+}
+
+.emogen-toast-text {
+  font-size: 1rem;
+  line-height: 1.35;
+  font-weight: 600;
+  color: inherit;
+}
+
+.emogen-toast-card-info {
+  background: linear-gradient(135deg, rgba(129, 140, 248, 0.85), rgba(99, 102, 241, 0.85));
+  border-color: rgba(165, 180, 252, 0.7);
+}
+
+.emogen-toast-card-error {
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.9), rgba(239, 68, 68, 0.95));
+  border-color: rgba(252, 165, 165, 0.7);
 }
