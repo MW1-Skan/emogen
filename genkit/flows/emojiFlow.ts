@@ -58,7 +58,8 @@ export const emojiFlow = defineFlow(
 
     const response = await client.responses.create({
       model,
-      temperature: 0.15,
+      // Slightly higher temperature so regens vary more often.
+      temperature: 0.65,
       max_output_tokens: 150,
       input: [
         {

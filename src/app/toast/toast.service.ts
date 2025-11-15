@@ -7,7 +7,7 @@ type ToastSeverity = 'success' | 'info' | 'error';
 export class ToastService {
   private readonly messageService = inject(MessageService);
 
-  success(detail: string, life = 100000): void {
+  success(detail: string, life = 2600): void {
     this.add('success', detail, life);
   }
 
