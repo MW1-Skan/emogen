@@ -131,3 +131,10 @@ function pickFallback(): [string, string, string] {
   const shuffled = [...FALLBACK_EMOJIS].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, 3) as [string, string, string];
 }
+
+export const __test = {
+  parseResponse,
+  extractJson,
+  extractEmojis,
+  pickFallback
+};

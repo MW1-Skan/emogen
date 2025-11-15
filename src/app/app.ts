@@ -12,6 +12,7 @@ import { EmojiStateService } from './services/emoji-state.service';
 import { EmojiSet } from './models/emoji-set';
 import { environment } from '../environments/environment';
 import { SupportingContentComponent } from './supporting-content/supporting-content.component';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 
 @Component({
   selector: 'app-root',
@@ -37,6 +38,8 @@ export class App {
   protected readonly favoriteIds = computed(() => this.state.favorites().map((set) => set.id));
 
   constructor() {
+    injectSpeedInsights({ framework: 'angular' });
+
     effect(() => {
       const error = this.state.error();
       if (error) {

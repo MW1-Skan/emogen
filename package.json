@@ -11,7 +11,8 @@
     "serve:ssr:emogen": "node dist/emogen/server/server.mjs",
     "genkit:dev": "tsx --tsconfig tsconfig.genkit.json genkit/server.ts",
     "genkit:build": "tsc -p tsconfig.genkit.json",
-    "start:genkit": "tsx --tsconfig tsconfig.genkit.json genkit/server.ts"
+    "start:genkit": "tsx --tsconfig tsconfig.genkit.json genkit/server.ts",
+    "test:emoji-flow": "node --test --import tsx genkit/flows/emojiFlow.spec.ts"
   },
   "prettier": {
     "printWidth": 100,
@@ -35,6 +36,7 @@
     "@angular/platform-server": "^20.3.0",
     "@angular/router": "^20.3.0",
     "@angular/ssr": "^20.3.0",
+    "@vercel/speed-insights": "^1.2.0",
     "express": "^5.1.0",
     "primeicons": "^7.0.0",
     "primeng": "^20.3.0",
