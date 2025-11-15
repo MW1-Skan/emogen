@@ -98,7 +98,7 @@ const FLOATING_EMOJIS = [
 ];
 
 const TOTAL_FLOATERS_DESKTOP = 100;
-const TOTAL_FLOATERS_MOBILE = 50;
+const TOTAL_FLOATERS_MOBILE = 20;
 
 @Component({
   selector: 'app-floating-emoji-background',

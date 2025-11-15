@@ -11,6 +11,7 @@ import { ToastService } from './toast/toast.service';
 import { EmojiStateService } from './services/emoji-state.service';
 import { EmojiSet } from './models/emoji-set';
 import { environment } from '../environments/environment';
+import { SupportingContentComponent } from './supporting-content/supporting-content.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { environment } from '../environments/environment';
     FloatingEmojiBackgroundComponent,
     FavoritesComponent,
     HistoryComponent,
+    SupportingContentComponent,
     ToastModule
   ],
   templateUrl: './app.html',
@@ -117,4 +119,3 @@ export class App {
     this.toast.clear();
   }
 }
-
