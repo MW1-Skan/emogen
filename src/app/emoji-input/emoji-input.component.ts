@@ -18,7 +18,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
       [formGroup]="form"
     >
       <div class="flex flex-col gap-2">
-        <p class="text-sm uppercase tracking-[0.35em] text-white/60">Input</p>
+        <p class="text-sm uppercase tracking-[0.35em] text-white/60">Emogen</p>
         <h1 class="text-3xl md:text-5xl font-semibold text-white tracking-tight">
           AI emoji generator for every vibe
         </h1>
