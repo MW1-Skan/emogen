@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 import { startFlowsServer } from '@genkit-ai/flow';
 
-import { emojiFlow } from './flows/emojiFlow';
+import { emojiFlow } from '../functions/src/genkit/flows/emojiFlow';
 
 const allowedOrigins = process.env['EMOGEN_ALLOWED_ORIGINS']
   ? process.env['EMOGEN_ALLOWED_ORIGINS']
