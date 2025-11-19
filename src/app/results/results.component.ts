@@ -9,7 +9,8 @@ import { EmojiCardComponent } from '../emoji-card/emoji-card.component';
   imports: [CommonModule, EmojiCardComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'glass-panel rounded-[var(--radius-xl)] p-6 md:p-8 text-white shadow-emoji-card'
+    class:
+      'glass-panel rounded-[var(--radius-xl)] p-6 md:p-8 text-white shadow-emoji-card min-h-[360px] flex flex-col'
   },
   template: `
     <header class="flex flex-wrap items-start justify-between gap-4">
@@ -44,11 +45,18 @@ import { EmojiCardComponent } from '../emoji-card/emoji-card.component';
       </div>
     </header>
 
-    <div class="mt-8">
+    <div class="mt-8 flex-1">
       @if (isLoading()) {
-        <p class="text-white/70">Generating your emojis...</p>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-3" aria-live="polite">
+          @for (placeholder of skeletonPlaceholders; track placeholder) {
+            <div
+              class="h-32 rounded-[var(--radius-lg)] bg-white/10 animate-pulse"
+              aria-hidden="true"
+            ></div>
+          }
+        </div>
       } @else if (error(); as message) {
-        <p class="text-red-300">{{ message }}</p>
+        <p class="text-red-300 min-h-[128px] flex items-center">{{ message }}</p>
       } @else if (hasResult()) {
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
           @for (emoji of result()?.emojis ?? []; track emoji) {
@@ -56,8 +64,8 @@ import { EmojiCardComponent } from '../emoji-card/emoji-card.component';
           }
         </div>
       } @else {
-        <p class="text-white/60">
-          Describe what’s happening and we’ll suggest the perfect emoji combination.
+        <p class="text-white/60 min-h-[128px] flex items-center">
+          Describe what's happening and we'll suggest the perfect emoji combination.
         </p>
       }
     </div>
@@ -75,6 +83,7 @@ export class ResultsComponent {
   readonly copyEmoji = output<string>();
 
   protected readonly hasResult: Signal<boolean> = computed(() => !!this.result());
+  protected readonly skeletonPlaceholders = [0, 1, 2];
   protected readonly isFavorite = computed(() => {
     const ids = this.favoriteIds() ?? [];
     const current = this.result();

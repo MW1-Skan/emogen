@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import 'primeicons/primeicons.css';
 
 @tailwind base;
 @tailwind components;
@@ -18,7 +17,6 @@
   --radius-xl: 32px;
   --radius-lg: 24px;
   --radius-md: 16px;
-  --p-toast-border-width: 0;
 }
 
 @layer base {
@@ -102,33 +100,6 @@
   }
 }
 
-@layer base {
-  .p-toast {
-    position: fixed;
-    width: min(420px, calc(100vw - 2rem));
-    pointer-events: none;
-  }
-
-  .p-toast-top-right {
-    top: 1.25rem;
-    right: 1.25rem;
-  }
-
-  .p-toast-message {
-    pointer-events: auto;
-    margin: 0;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-  }
-}
-
-.emogen-toast {
-  .p-toast-message {
-    padding: 0;
-  }
-}
-
 .emogen-toast-card {
   width: min(420px, calc(100vw - 2rem));
   padding: 1.5rem 1.6rem;
@@ -145,6 +116,9 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   backdrop-filter: blur(18px);
   margin-bottom: 0.85rem;
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+  animation: toast-in 200ms ease forwards;
 }
 
 .emogen-toast-card:hover {
@@ -175,4 +149,32 @@
 .emogen-toast-card-error {
   background: linear-gradient(135deg, rgba(248, 113, 113, 0.9), rgba(239, 68, 68, 0.95));
   border-color: rgba(252, 165, 165, 0.7);
+}
+
+.emogen-toast-card-exit {
+  animation: toast-out 180ms ease forwards;
+}
+
+@keyframes toast-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toast-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
 }

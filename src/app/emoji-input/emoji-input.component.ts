@@ -62,8 +62,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
         </button>
         <button
           type="reset"
-          class="rounded-full border border-white/20 px-6 py-3 text-base font-semibold text-white/70 transition hover:border-white/40 hover:text-white"
-          (click)="handleReset()"
+        class="rounded-full border border-white/20 px-6 py-3 text-base font-semibold text-white/70 transition hover:border-white/40 hover:text-white"
+        (click)="handleReset()"
         >
           Clear
         </button>
@@ -72,7 +72,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
           class="ml-auto flex items-center gap-2 rounded-full bg-white/10 px-5 py-3 text-sm font-semibold tracking-wide text-white/80 ring-1 ring-white/15 transition hover:bg-white/20 hover:text-white"
           (click)="handleDonate()"
         >
-          <span class="pi pi-heart text-pink-300"></span>
+          <span aria-hidden="true" class="text-pink-300">❤️</span>
           Tip the emoji wizard
         </button>
       </div>

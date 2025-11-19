@@ -3,7 +3,6 @@ import { provideRouter } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
 
 import { routes } from './app.routes';
 
@@ -14,7 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
-    provideAnimations(),
-    MessageService
+    provideAnimations()
   ]
 };

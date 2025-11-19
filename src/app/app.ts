@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToastModule } from 'primeng/toast';
 
 import { EmojiInputComponent } from './emoji-input/emoji-input.component';
 import { ResultsComponent } from './results/results.component';
@@ -12,8 +11,7 @@ import { EmojiStateService } from './services/emoji-state.service';
 import { EmojiSet } from './models/emoji-set';
 import { environment } from '../environments/environment';
 import { SupportingContentComponent } from './supporting-content/supporting-content.component';
-import { injectSpeedInsights } from '@vercel/speed-insights';
-import { inject as injectAnalytics } from '@vercel/analytics';
+import { ToastContainerComponent } from './toast/toast-container.component';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +23,7 @@ import { inject as injectAnalytics } from '@vercel/analytics';
     FavoritesComponent,
     HistoryComponent,
     SupportingContentComponent,
-    ToastModule
+    ToastContainerComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -39,8 +37,7 @@ export class App {
   protected readonly favoriteIds = computed(() => this.state.favorites().map((set) => set.id));
 
   constructor() {
-    injectAnalytics({ framework: 'angular' });
-    injectSpeedInsights({ framework: 'angular' });
+    this.deferAnalytics();
 
     effect(() => {
       const error = this.state.error();
@@ -120,7 +117,25 @@ export class App {
     }
   }
 
-  protected handleToastClick(): void {
-    this.toast.clear();
+  private deferAnalytics(): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const run = () => {
+      void import('@vercel/analytics')
+        .then((mod) => mod.inject({ framework: 'angular' }))
+        .catch(() => {});
+
+      void import('@vercel/speed-insights')
+        .then((mod) => mod.injectSpeedInsights({ framework: 'angular' }))
+        .catch(() => {});
+    };
+
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(run, { timeout: 2000 });
+    } else {
+      globalThis.setTimeout(run, 1200);
+    }
   }
 }

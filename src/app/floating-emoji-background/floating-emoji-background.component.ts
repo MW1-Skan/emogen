@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, PLATFORM_ID, effect, inject, signal } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 type FloatingEmoji = {
   id: string;
@@ -97,8 +97,8 @@ const FLOATING_EMOJIS = [
   '♦️'
 ];
 
-const TOTAL_FLOATERS_DESKTOP = 50;
-const TOTAL_FLOATERS_MOBILE = 5;
+const TOTAL_FLOATERS_DESKTOP = 28;
+const TOTAL_FLOATERS_MOBILE = 6;
 
 @Component({
   selector: 'app-floating-emoji-background',
@@ -125,7 +125,29 @@ const TOTAL_FLOATERS_MOBILE = 5;
   `
 })
 export class FloatingEmojiBackgroundComponent {
-  protected readonly emojis = signal<FloatingEmoji[]>(this.createEmojis());
+  private readonly platformId = inject(PLATFORM_ID);
+
+  protected readonly emojis = signal<FloatingEmoji[]>([]);
+
+  constructor() {
+    effect(
+      () => {
+        if (!isPlatformBrowser(this.platformId)) {
+          return;
+        }
+
+        const prefersReducedMotion =
+          window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+        if (prefersReducedMotion) {
+          this.emojis.set([]);
+          return;
+        }
+
+        this.emojis.set(this.createEmojis());
+      },
+      { allowSignalWrites: true }
+    );
+  }
 
   private createEmojis(): FloatingEmoji[] {
     const total =
