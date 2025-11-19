@@ -20,11 +20,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
       <div class="flex flex-col gap-2">
         <p class="text-sm uppercase tracking-[0.35em] text-white/60">Emogen</p>
         <h1 class="text-3xl md:text-5xl font-semibold text-white tracking-tight">
-          AI emoji generator for every vibe
+          Find the right emoji for any idea
         </h1>
         <p class="text-white/70 text-base max-w-2xl">
-          Describe your feeling, launch, or community moment and Emogen's AI emoji maker responds with
-          three expressive icons you can remix, favorite, and copy instantly.
+          Type a thought, object, or full expression and Emogen surfaces
+          three creative emojis, far more flexible than rigid keyword pickers on laptops or phones.
         </p>
       </div>
 
@@ -38,7 +38,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
             class="w-full resize-none bg-transparent text-lg text-white placeholder:text-white/40 focus-visible:outline-none"
             rows="3"
             maxlength="180"
-            placeholder="Just aced my presentation and I'm buzzing with ideas..."
+            placeholder='Need emojis for "analysis", "danger", or "what is that??"'
             aria-describedby="prompt-hint"
           ></textarea>
           <div class="flex items-center justify-between text-sm text-white/60">
@@ -69,11 +69,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
         </button>
         <button
           type="button"
-          class="ml-auto flex items-center gap-2 rounded-full bg-white/10 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-white/80 ring-1 ring-white/15 transition hover:bg-white/20 hover:text-white"
+          class="ml-auto flex items-center gap-2 rounded-full bg-white/10 px-5 py-3 text-sm font-semibold tracking-wide text-white/80 ring-1 ring-white/15 transition hover:bg-white/20 hover:text-white"
           (click)="handleDonate()"
         >
           <span class="pi pi-heart text-pink-300"></span>
-          Donate
+          Tip the emoji wizard
         </button>
       </div>
     </form>
