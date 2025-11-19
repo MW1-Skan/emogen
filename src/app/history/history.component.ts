@@ -8,16 +8,19 @@ import { EmojiSet } from '../models/emoji-set';
   imports: [CommonModule, DatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'glass-panel rounded-[var(--radius-xl)] p-6 text-white shadow-emoji-card'
+    class:
+      'glass-panel rounded-[var(--radius-xl)] p-6 text-white shadow-emoji-card min-h-[280px] flex flex-col'
   },
   template: `
     <header class="flex flex-col gap-1">
       <p class="text-sm uppercase tracking-[0.35em] text-white/60">History</p>
       <h3 class="text-xl font-semibold">Recent blends</h3>
     </header>
-    <div class="mt-6 space-y-3">
+    <div class="mt-6 space-y-3 flex-1">
       @if (history().length === 0) {
-        <p class="text-white/60">We’ll keep the latest 10 emoji sets for you here.</p>
+        <p class="text-white/60 h-full flex items-center">
+          We'll keep the latest 10 emoji sets for you here.
+        </p>
       } @else {
         <ol class="flex flex-col gap-3" aria-label="Emoji generation history">
           @for (entry of history(); track entry.id) {

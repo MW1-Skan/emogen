@@ -21,7 +21,7 @@ type Resource = { title: string; description: string; action?: { label: string; 
       >
         <details class="group" data-accordion="faq">
           <summary
-            class="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-xl font-semibold text-white"
+            class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 text-left text-xl font-semibold text-white"
           >
             <span id="emogen-faq-heading">FAQ & highlights</span>
             <span
@@ -93,7 +93,7 @@ type Resource = { title: string; description: string; action?: { label: string; 
       >
         <details class="group" data-accordion="press">
           <summary
-            class="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-xl font-semibold text-white"
+            class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 text-left text-xl font-semibold text-white"
           >
             <span id="emogen-press-heading">Press notes & assets</span>
             <span

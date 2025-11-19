@@ -8,7 +8,8 @@ import { EmojiSet } from '../models/emoji-set';
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'glass-panel rounded-[var(--radius-xl)] p-6 text-white shadow-emoji-card'
+    class:
+      'glass-panel rounded-[var(--radius-xl)] p-6 text-white shadow-emoji-card min-h-[280px] flex flex-col'
   },
   template: `
     <header class="flex flex-col gap-1">
@@ -16,9 +17,11 @@ import { EmojiSet } from '../models/emoji-set';
       <h3 class="text-xl font-semibold">Saved combos</h3>
     </header>
 
-    <div class="mt-6 space-y-4">
+    <div class="mt-6 space-y-4 flex-1">
       @if (favorites().length === 0) {
-        <p class="text-white/60">Favorite a result to quickly reuse it later.</p>
+        <p class="text-white/60 h-full flex items-center">
+          Favorite a result to quickly reuse it later.
+        </p>
       } @else {
         <ul class="flex flex-col gap-3" aria-label="Favorite emoji sets">
           @for (favorite of favorites(); track favorite.id) {
