@@ -34,7 +34,9 @@ export class EmojiStateService {
     this.favoritesSignal.set(persisted.favorites ?? []);
   }
 
-  async generate(prompt: string): Promise<void> {
+  async generate(prompt: string, options?: { avoid?: readonly string[] }): Promise<void> {
+    const previousPrompt = this.promptSignal();
+    const previousResult = this.resultSignal();
     const normalized = prompt.trim();
     if (!normalized) {
       this.errorSignal.set('Please describe how you feel first.');
@@ -45,8 +47,12 @@ export class EmojiStateService {
     this.isGeneratingSignal.set(true);
     this.errorSignal.set(null);
 
+    const derivedAvoid =
+      options?.avoid ??
+      (previousResult && previousPrompt.trim() === normalized ? previousResult.emojis : undefined);
+
     try {
-      const result = await this.flow.generate(normalized);
+      const result = await this.flow.generate(normalized, { avoid: derivedAvoid });
       this.resultSignal.set(result);
       this.recordHistory(result);
     } catch (error) {
@@ -63,7 +69,7 @@ export class EmojiStateService {
       return;
     }
 
-    await this.generate(this.promptSignal());
+    await this.generate(this.promptSignal(), { avoid: this.resultSignal()?.emojis });
   }
 
   toggleFavorite(set: EmojiSet): void {

@@ -19,14 +19,13 @@ const emojiSetSchema = z.object({
 
 const emojiFlowInputSchema = z.object({
   prompt: z.string().min(3, 'Prompt must be at least 3 characters long.'),
-  count: z.number().int().min(3).max(3).optional(),
-  tone: z.enum(['playful', 'calm', 'intense']).optional()
+  avoid: z.array(z.string().min(1)).max(10).optional()
 });
 
 export type EmojiFlowInput = z.infer<typeof emojiFlowInputSchema>;
 export type EmojiFlowResult = z.infer<typeof emojiSetSchema>;
 
-const FALLBACK_EMOJIS = ['🎉', '🚀', '✨', '🔥', '🌈', '🧠', '💡', '💫', '🍀', '🌊', '🧘‍♂️', '🎯'];
+const FALLBACK_EMOJIS = ['🔥', '🚀', '✨', '🎯', '🌈', '🧠', '📝', '💡', '💫', '🍀', '🌊', '🧘‍♂️'];
 
 const getOpenAIClient = (() => {
   let client: OpenAI | null = null;
@@ -52,24 +51,29 @@ export const emojiFlow = defineFlow(
     outputSchema: emojiSetSchema
   },
   async (input) => {
-    const { prompt } = input;
+    const { prompt, avoid } = input;
     const client = getOpenAIClient();
     const model = process.env['OPENAI_EMOJI_MODEL'] ?? 'gpt-4o-mini';
 
     const response = await client.responses.create({
       model,
-      // Slightly higher temperature so regens vary more often.
-      temperature: 0.65,
-      max_output_tokens: 150,
+      temperature: 0.35,
+      max_output_tokens: 90,
       input: [
         {
           role: 'system',
           content:
-            'You are Emogen, an emoji sommelier. Respond ONLY with strict JSON: {"emojis":["🔥","🚀","✨"],"notes":"short descriptive phrase"} and make sure the emojis match the described mood exactly. Each emoji must be a single Unicode emoji character. Avoid duplicates unless requested.'
+            'You are Emogen, an emoji sommelier. Reply ONLY with JSON {"emojis":["🔥","🚀","✨"],"notes":"short phrase"}. Each emoji must be a single Unicode character that matches the prompt mood. Never repeat emojis from the provided avoid list.'
         },
         {
           role: 'user',
-          content: `User prompt: ${prompt}\nReturn exactly three emojis that represent the feeling.`
+          content: [
+            `Prompt: ${prompt}`,
+            'Return three different emojis plus a short descriptive note.',
+            avoid?.length ? `Avoid entirely: ${avoid.join(' ')}` : undefined
+          ]
+            .filter(Boolean)
+            .join('\n')
         }
       ]
     });
