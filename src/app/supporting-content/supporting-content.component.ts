@@ -198,7 +198,7 @@ export class SupportingContentComponent {
     {
       title: 'Media kit (logos + gradients)',
       description: 'Download PNG/SVG assets featuring the emoji finder UI for hero images or tool directories.',
-      action: { label: 'Download pack', href: 'emogen-favicon.png' }
+      action: { label: 'Download pack', href: 'emogen-favicon-square.png' }
     },
     {
       title: 'Product spec & storyline',
