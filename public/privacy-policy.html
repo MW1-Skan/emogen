@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emogen Extension - Privacy Policy</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+            color: #333;
+        }
+
+        h1 {
+            color: #1a73e8;
+            border-bottom: 3px solid #1a73e8;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+
+        .last-updated {
+            color: #666;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .highlight {
+            background: #f0f7ff;
+            padding: 15px;
+            border-left: 4px solid #1a73e8;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🎨 Emogen Chrome Extension</h1>
+    <h2>Privacy Policy</h2>
+    <p class="last-updated">Last Updated: December 23, 2025</p>
+
+    <div class="highlight">
+        <strong>TL;DR:</strong> This is a fun portfolio project. We don't collect, store, or sell any personal data.
+        Everything stays on your device.
+    </div>
+
+    <h2>1. What We Don't Do</h2>
+    <p>Emogen does NOT:</p>
+    <ul>
+        <li>Collect personal information (name, email, etc.)</li>
+        <li>Track your browsing history</li>
+        <li>Share data with third parties</li>
+        <li>Sell your data</li>
+        <li>Store your prompts on our servers</li>
+    </ul>
+
+    <h2>2. What Data Is Used</h2>
+
+    <h3>Local Storage (On Your Device)</h3>
+    <p>The extension stores your emoji generation history <strong>locally on your device</strong> using Chrome's storage
+        API. This data:</p>
+    <ul>
+        <li>Never leaves your computer</li>
+        <li>Is only accessible by the extension</li>
+        <li>Is automatically deleted when you uninstall the extension</li>
+    </ul>
+
+    <h3>API Communication</h3>
+    <p>When you generate emojis, your text prompt is sent to our API endpoint:</p>
+    <ul>
+        <li><code>https://api-lkr3ru3foq-uc.a.run.app/api/emojiFlow</code></li>
+        <li>This is used <strong>solely</strong> to generate emoji suggestions</li>
+        <li>Prompts are <strong>not logged or stored</strong> server-side</li>
+        <li>Processed by OpenAI's GPT-4o-mini API and immediately discarded</li>
+    </ul>
+
+    <h2>3. Permissions Explained</h2>
+
+    <h3>Storage Permission</h3>
+    <p>Used to save your emoji history locally on your device. No cloud backup, no external access.</p>
+
+    <h3>Host Permissions (https://*/*)</h3>
+    <p>Required <strong>only</strong> to communicate with the Emogen API for generating emojis. The extension does not
+        access any other websites.</p>
+
+    <h2>4. Third-Party Services</h2>
+    <p>The extension uses:</p>
+    <ul>
+        <li><strong>Firebase Cloud Run</strong> - Hosts our API endpoint</li>
+        <li><strong>OpenAI GPT-4o-mini</strong> - Processes prompts to generate emoji suggestions</li>
+    </ul>
+    <p>Neither service stores your prompts beyond the immediate request processing.</p>
+
+    <h2>5. Your Rights</h2>
+    <p>You can:</p>
+    <ul>
+        <li>Uninstall the extension to remove all local data</li>
+        <li>Stop using the extension at any time</li>
+    </ul>
+
+    <h2>6. Changes to This Policy</h2>
+    <p>This is a personal portfolio project. If any changes are made to data handling, this policy will be updated with
+        a new "Last Updated" date.</p>
+
+    <h2>7. Contact</h2>
+    <p>Questions or concerns?</p>
+    <ul>
+        <li><strong>GitHub Issues:</strong> <a
+                href="https://github.com/MW1-Skan/emogen/issues">github.com/MW1-Skan/emogen/issues</a></li>
+        <li><strong>Website:</strong> <a href="https://emo-gen.org">emo-gen.org</a></li>
+    </ul>
+
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
+
+    <p style="text-align: center; color: #999; font-size: 14px;">
+        Emogen is a fun, open-source portfolio project.<br>
+        Made with ✨ by <a href="https://github.com/MW1-Skan">MW1-Skan</a>
+    </p>
+</body>
+
+</html>

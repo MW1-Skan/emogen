@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emogen - Emoji Mood Generator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-emoji">✨</span>
+        <h1 class="logo-text">Emogen</h1>
+      </div>
+      <p class="tagline">AI-powered emoji generator</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Tabs -->
+      <nav class="tabs">
+        <button class="tab-button active" data-tab="generate">Generate</button>
+        <button class="tab-button" data-tab="history">History</button>
+      </nav>
+
+      <!-- Generate Tab -->
+      <section class="tab-content active" id="generate-tab">
+        <div class="input-section">
+          <label for="mood-input" class="input-label">What's your vibe?</label>
+          <textarea id="mood-input" class="mood-input"
+            placeholder="excited about new project, feeling cozy, ready for adventure..." rows="3"
+            maxlength="200"></textarea>
+          <div class="char-counter">
+            <span id="char-count">0</span>/200
+          </div>
+        </div>
+
+        <button id="generate-btn" class="generate-btn">
+          <span class="btn-text">Generate Emojis</span>
+          <span class="btn-icon">🎨</span>
+        </button>
+
+        <!-- Results Section -->
+        <div id="results-section" class="results-section hidden">
+          <h2 class="results-title">Your Emojis</h2>
+          <div id="emoji-grid" class="emoji-grid">
+            <!-- Emoji cards will be inserted here -->
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-section" class="loading-section hidden">
+          <div class="spinner"></div>
+          <p class="loading-text">Generating your perfect emojis...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-section" class="error-section hidden">
+          <div class="error-icon">⚠️</div>
+          <p class="error-message" id="error-message">Something went wrong</p>
+          <button id="retry-btn" class="retry-btn">Try Again</button>
+        </div>
+      </section>
+
+      <!-- History Tab -->
+      <section class="tab-content" id="history-tab">
+        <div id="history-list" class="history-list">
+          <!-- Emoji cards will be inserted here -->
+        </div>
+        <div id="history-empty" class="empty-state">
+          <div class="empty-icon">🎨</div>
+          <p class="empty-text">No emojis yet</p>
+          <p class="empty-subtext">Generate some emojis to build your personal emoji keyboard</p>
+        </div>
+
+        <!-- Copy Indicator -->
+        <div id="history-copy-indicator" class="history-copy-indicator">
+          ✓ Copied
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <a href="https://emo-gen.org" target="_blank" class="footer-link">🌐 Web App</a>
+      <span class="footer-divider">•</span>
+      <a href="https://github.com/MW1-Skan/emogen" target="_blank" class="footer-link">GitHub</a>
+      <span class="footer-divider">•</span>
+      <a href="https://revolut.me/skannn" target="_blank" class="footer-link">💖 Donate</a>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">
+      <span id="toast-message"></span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>

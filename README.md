@@ -61,6 +61,20 @@ Both servers must be running locally: the Angular app talks to `/api/emojiFlow`,
 3. Serve `/dist/emogen/browser` statically (GitHub Pages, Cloudflare Pages, etc.).
 4. Point the frontend to the deployed flow URL by configuring your host to proxy `/api/*` to the flow or by hosting both under the same domain.
 
+## Chrome Extension
+
+Emogen is also available as a Chrome extension! Generate emojis right from your browser toolbar.
+
+**Location:** `/extension`
+
+**Quick Start:**
+1. Deploy your Genkit API (see above)
+2. Update `extension/popup/popup.js` with your API endpoint
+3. Load the extension in Chrome (`chrome://extensions` → Developer mode → Load unpacked)
+4. Click the Emogen icon in your toolbar to start generating emojis
+
+**Documentation:** See `extension/SETUP.md` for complete setup and deployment instructions.
+
 ## Testing & linting
 
 - `npm run test` – Angular unit tests (Karma/Jasmine).
